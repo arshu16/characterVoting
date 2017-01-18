@@ -12,8 +12,8 @@ class FooterActions {
 		$.ajax({url: '/api/characters/top'})
 			.done((data) => {
 				this.actions.getTopCharactersSuccess(data);
-			}).fail((err) => {
-				this.actions.getTopCharactersFail(err);
+			}).fail((jqXhr) => {
+				this.actions.getTopCharactersFail(jqXhr);
 			});
 	}
 }
