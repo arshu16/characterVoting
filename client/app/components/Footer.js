@@ -15,7 +15,7 @@ class Footer extends React.Component {
 		FooterActions.getTopCharacters();
 	}
 
-	componentDidUnmount() {
+	componentWillUnmount() {
 		FooterStore.unlisten(this.onChange);
 	}
 
