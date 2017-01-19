@@ -24,4 +24,18 @@ class NavBarStore {
 	onUpdateOnlineUsers(data) {
 		this.onlineUsers = data.onlineUsers;
 	}
+
+	onUpdateAjaxAnimation(className) {
+		this.ajaxAnimationClass = className;
+	}
+
+	onUpdateSearchQuery(event) {
+		this.searchQuery = event.target.value;
+	}
+
+	onGetCharacterCountFail(jqXhr) {
+		toastr.error(jqXhr.responseJSON.message);
+	}
 }
+
+export default alt.createStore(NavBarStore);
