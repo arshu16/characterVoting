@@ -1,5 +1,5 @@
-# characterVoting  
-Purely for learning purposes  
+# characterVoting
+A server side rendered app built purely for learning purposes.  
 Technology used:  
 Backend: Mongoose (Mongo DB)  
 Middleware: NodeJS, SocketIO  
