@@ -10,9 +10,7 @@ var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
-
 var app = express();
-
 app.set('port', process.env.PORT || 3000);
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -35,6 +33,23 @@ app.use(function(req, res) {
 	});
 });
 
-app.listen(app.get('port'), function() {
-  console.log('Express server listening on port ' + app.get('port'));
+
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+var onlineUsers = 0;
+
+io.sockets.on('connection', function(socket) {
+	onlineUsers++;
+
+	io.sockets.emit('onlineUsers', {onlineUsers: onlineUsers});
+
+	socket.on('disconnect', function(){
+		onlineUsers--;
+		io.sockets.emit('onlineUsers', {onlineUsers: onlineUsers});
+	});
+});
+
+
+server.listen(app.get('port'), function(){
+	console.log('Express server listening on port ' + app.get('port'));
 });
